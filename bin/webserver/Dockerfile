@@ -24,6 +24,8 @@ RUN apt-get -y install libmcrypt-dev
 RUN pecl install mcrypt-1.0.2
 RUN docker-php-ext-enable mcrypt
 
+RUN rm /etc/apt/preferences.d/no-debian-php
+
 # Download packages
 RUN apt-get -y install \
     libsqlite3-dev \
