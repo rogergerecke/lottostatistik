@@ -7,5 +7,6 @@
  */
 
 //echo phpinfo();
-echo $_SERVER['DOCUMENT_ROOT'];
 require_once "../config/bootstrap.php";
+
+print_r($entityManager);
