@@ -15,7 +15,7 @@ services:
     volumes:
       - ./www/html:/var/www/html
       - ./dev/config/php/php.ini:/usr/local/etc/php/php.ini
-      - ./dev/config/xdebug/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+      - ./dev/config/xdebug/xdebug.ini:/etc/php/7.3/mods-available/xdebug.ini
       - ./dev/config/vhosts:/etc/apache2/sites-enabled
       - ./dev/logs/apache2:/var/log/apache2
   mysql:
