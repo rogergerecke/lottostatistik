@@ -3,29 +3,31 @@ version: "3"
 services:
   webserver:
     build:
-      context: ./bin/webserver
+      context: build/webserver
     container_name: 'lotto-server'
     restart: 'always'
     ports:
       - "80:80"
       - "443:443"
+      - "2222:22"
     links:
       - mysql
     volumes:
-      - ./www/public:/var/www/html
-      - ./config/php/php.ini:/usr/local/etc/php/php.ini
-      - ./config/vhosts:/etc/apache2/sites-enabled
-      - ./logs/apache2:/var/log/apache2
+      - ./www/html:/var/www/html
+      - ./dev/config/php/php.ini:/usr/local/etc/php/php.ini
+      - ./dev/config/xdebug/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+      - ./dev/config/vhosts:/etc/apache2/sites-enabled
+      - ./dev/logs/apache2:/var/log/apache2
   mysql:
-    build: ./bin/mysql
+    build: build/mysql
     container_name: 'lotto-mysql'
     restart: 'always'
     ports:
       - "3306:3306"
     volumes:
-      - ./data/mysql}:/var/lib/mysql
-      - ./logs/mysql}:/var/log/mysql
-      - ./config/mysql/mycustom.cnf}:/etc/mysql/conf.d/custom.cnf
+      - ./dev/data/mysql:/var/lib/mysql
+      - ./dev/logs/mysql:/var/log/mysql
+      - ./dev/config/mysql/mycustom.cnf:/etc/mysql/conf.d/custom.cnf
     environment:
       MYSQL_ROOT_PASSWORD: lotto
       MYSQL_DATABASE: lottodb
