@@ -38,6 +38,7 @@ RUN apt-get -y install \
     php-soap \
     libyaml-dev
 
+# Enable PHP extention
 RUN docker-php-ext-install \
     pdo_mysql \
     pdo_sqlite \
